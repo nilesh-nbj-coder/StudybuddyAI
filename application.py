@@ -7,7 +7,7 @@ from src.generator.question_generator import QuestionGenerator
 load_dotenv()
 
 def main():
-    st.set_page_config(page_title="Question and Answer AI",page_icon="💠")
+    st.set_page_config(page_title="Question and Answer AI--",page_icon="💠")
     if 'quiz_manager' not in st.session_state:
         st.session_state.quiz_manager=QuizManager()
         
