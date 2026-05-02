@@ -1,7 +1,7 @@
 pipeline {
     agent any
     /* environment {
-        DOCKER_HUB_REPO = "nilesh-nbj-coder/StudybuddyAI"
+        DOCKER_HUB_REPO = "nileshbj/studybuddy"
         DOCKER_HUB_CREDENTIALS_ID = "dockerhub-token"
         IMAGE_TAG = "v${BUILD_NUMBER}"
     } */
@@ -12,7 +12,7 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-token', url: 'https://github.com/nilesh-nbj-coder/StudybuddyAI.git']])
             }
         }        
-        /* stage('Build Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     echo 'Building Docker image...'
@@ -30,26 +30,27 @@ pipeline {
                 }
             }
         }
+        /*
         stage('Update Deployment YAML with New Tag') {
             steps {
                 script {
                     sh """
-                    sed -i 's|image: dataguru97/studybuddy:.*|image: dataguru97/studybuddy:${IMAGE_TAG}|' manifests/deployment.yaml
+                    sed -i 's|image: nileshbj/studybuddy:.*|image: nileshbj/studybuddy:${IMAGE_TAG}|' manifests/deployment.yaml
                     """
                 }
             }
         }
-
+        
         stage('Commit Updated YAML') {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
                         sh '''
-                        git config user.name "data-guru0"
-                        git config user.email "gyrogodnon@gmail.com"
+                        git config user.name "nilesh-nbj-coder"
+                        git config user.email "nilesh190282@gmail.com"
                         git add manifests/deployment.yaml
                         git commit -m "Update image tag to ${IMAGE_TAG}" || echo "No changes to commit"
-                        git push https://${GIT_USER}:${GIT_PASS}@github.com/data-guru0/STUDY-BUDDY-AI.git HEAD:main
+                        git push https://${GIT_USER}:${GIT_PASS}@github.com/nilesh-nbj-coder/StudybuddyAI.git HEAD:main
                         '''
                     }
                 }
