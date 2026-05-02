@@ -69,14 +69,14 @@ def main():
         results_df=st.session_state.quiz_manager.generate_result_dataframe()
         
         if not results_df.empty:
-            correct_count=results_df["is_correct"].sum()
+            correct_count=results_df['is_correct'].sum()
             total_questions=len(results_df)
             score_percentage=(correct_count/total_questions)*100
             st.write(f"Score : {score_percentage}")
             
             for _,result in results_df.iterrows():
-                question_num=result["question_number"]
-                if result["is_correct"]:
+                question_num=result['question_number']
+                if result['is_correct']:
                     st.success(f"✅ Question {question_num} : {result['question']}")
                 else:
                     st.error(f"❌ Question {question_num} : {result['question']}")
